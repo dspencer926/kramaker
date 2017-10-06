@@ -4,6 +4,9 @@ import images from './Images.js';
 class ImageList extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      images: [],
+    }
 
     this.loadPic = this.loadPic.bind(this);
     let teeth;
@@ -12,6 +15,12 @@ class ImageList extends Component {
   componentDidMount() {
     console.log(images.kramerTeethImg)
     this.teeth = images.kramerTeethImg;
+    this.teeth.height = 200;
+    this.teeth.width = 200;
+    let image = [this.teeth]
+    this.setState({
+      images: image,
+    })
   }
 
   loadPic() {
@@ -22,7 +31,15 @@ class ImageList extends Component {
   render() {
     return (
       <div id='image-list'>
-        <img name='teeth' height='200' width='200' src='./kramerPics/kramerTeeth.png' onClick={(e)=> {this.props.addPic(e)}} />
+        {this.state.images.map(val => {
+          return (
+            <img 
+              src={val.src} 
+              height={val.height}
+              width={val.width}
+              onClick={(e)=> {this.props.addPic(e)}}
+            />);
+        })}
       </div>
     );
   }
