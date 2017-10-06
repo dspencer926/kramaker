@@ -47,6 +47,8 @@ class App extends Component {
   }
 
   downloadLink() {
+    this.state.draggableImage.deselect();
+    this.canvas.refresh();
     this.setState({
       downloadScreen: true,
       finishedCanvas: this.canvas.canv.toDataURL(),

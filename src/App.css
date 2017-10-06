@@ -38,6 +38,7 @@ button, input.upload {
   position: fixed;
   left: 5%;
   top: 5%;
+  padding: 15px;
 }
 
 .hidden {
