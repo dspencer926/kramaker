@@ -1,7 +1,11 @@
 {
-  "main.css": "static/css/main.d36863e1.css",
-  "main.css.map": "static/css/main.d36863e1.css.map",
-  "main.js": "static/js/main.c548bdd3.js",
-  "main.js.map": "static/js/main.c548bdd3.js.map",
-  "static/media/kramerTeeth.png": "static/media/kramerTeeth.51dbd905.png"
+  "main.css": "static/css/main.a065d883.css",
+  "main.css.map": "static/css/main.a065d883.css.map",
+  "main.js": "static/js/main.bff48c23.js",
+  "main.js.map": "static/js/main.bff48c23.js.map",
+  "static/media/kramerEars.png": "static/media/kramerEars.65d08206.png",
+  "static/media/kramerHair.png": "static/media/kramerHair.d504fd5d.png",
+  "static/media/kramerTeeth.png": "static/media/kramerTeeth.51dbd905.png",
+  "static/media/kramerTongue.png": "static/media/kramerTongue.48d77081.png",
+  "static/media/kramerTongue2.png": "static/media/kramerTongue2.a9be1f4d.png"
 }

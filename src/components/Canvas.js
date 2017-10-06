@@ -38,7 +38,7 @@ class Canvas extends Component {
   }
 
   checkItems(x, y) {
-    let instance = this.props.draggableImage
+    let instance = null;
     if (this.withinBox(x, y, this.props.draggableImage)) instance = this.props.draggableImage 
     return instance;
   }
@@ -63,18 +63,26 @@ class Canvas extends Component {
   }
 
   handleMouseDown(e) {
-    console.log('mousedown');
-    let x = e.clientX - this.canv.offsetLeft;
-    let y = e.clientY - this.canv.offsetTop;
-    let image = this.checkItems(x, y);
-    if (image) {
-      let mode = this.props.draggableImage.mode(x, y);
-      console.log(mode);
-      let obj = {x: x, y: y}
-      this.setState({
-        action: mode,
-        mouseDownCoords: obj,
-      })
+    console.log('clc')
+    if (this.props.draggableImage) {
+      let x = e.clientX - this.canv.offsetLeft;
+      let y = e.clientY - this.canv.offsetTop;
+      let image = this.checkItems(x, y);
+      if (image) {
+        if (!this.props.draggableImage.selected){
+          this.props.draggableImage.select();
+          this.refresh();
+        }
+        let mode = this.props.draggableImage.mode(x, y);
+        let obj = {x: x, y: y}
+        this.setState({
+          action: mode,
+          mouseDownCoords: obj,
+        })
+      } else {
+        this.props.draggableImage.deselect();
+        this.refresh();
+      }
     }
   }
 
@@ -160,10 +168,10 @@ class Canvas extends Component {
         onMouseMove={(e) => this.handleMouseMove(e)}
       />
     } else {
-      display = <p>Welcome to the Kramaker</p>
+      display = <h1>Welcome to the Kramaker</h1>
     }
     return (
-      <div className='canvas-div'>
+      <div id='canvas-div'>
         {display}
       </div>
     );

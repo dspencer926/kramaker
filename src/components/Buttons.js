@@ -9,16 +9,17 @@ class Buttons extends Component {
 
   loadPic() {
     let file = document.getElementById('upload');
-    this.props.getImage(file.files[0]);
-
+    if (file.files.length > 0) {
+      this.props.getImage(file.files[0]);
+      file.value = null;
+    }
   }
 
   render() {
     return (
       <div id='buttons'>
-        <canvas />
         <input id='upload' type='file' accept='image'/>
-        <button onClick={this.loadPic}>Test</button>
+        <button onClick={this.loadPic}>Okay</button>
       </div>
     );
   }

@@ -84,8 +84,6 @@ class DraggableImage {
 
   isInCircle(c, x, y) {     //checks to see if user clicked within circle
     let d = Math.sqrt(Math.pow((x - c.x), 2) + Math.pow((y - c.y), 2))
-    console.log(c, x, y, d)
-    console.log(this)
     if (d < this.buttonRadius) return true;
     return false;
   }
@@ -95,6 +93,7 @@ class DraggableImage {
     constructionCanv.height = this.height;
     constructionCanv.width = this.width;
     let ctx = constructionCanv.getContext('2d');
+    ctx.clearRect(0, 0, constructionCanv.width, constructionCanv.height)
     let image = new Image(this.img.width, this.img.height);
     image.src = this.img.src;
     ctx.drawImage(image, this.padding, this.padding, this.imageWidth, this.imageHeight);
@@ -104,25 +103,28 @@ class DraggableImage {
     let rotateLeft = this.constructorRotateBox.left;
     let rotateTop = this.constructorRotateBox.top;
     // ctx.drawImage(images.resize, resizeLeft, resizeTop, 50, 50);
-    ctx.beginPath();
-    ctx.lineWidth = 1;
-    ctx.strokeStyle = '#FFFFFF';
-    ctx.moveTo(0, 0);
-    ctx.lineTo(0, this.height);
-    ctx.lineTo(this.width, this.height);
-    ctx.lineTo(this.width, 0);
-    ctx.lineTo(0, 0);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.arc(this.constructorRotateBox.center.x, this.constructorRotateBox.center.y, 25, 0, 2 * Math.PI);
-    ctx.stroke();
-    ctx.fillStyle = 'white';
-    ctx.fill();
-    ctx.beginPath();
-    ctx.arc(this.constructorResizeBox.center.x, this.constructorResizeBox.center.y, 25, 0, 2 * Math.PI);
-    ctx.stroke();
-    ctx.fillStyle = 'red';
-    ctx.fill();
+    if (this.selected) {
+      console.log('selected')
+      ctx.beginPath();
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = '#FFFFFF';
+      ctx.moveTo(0, 0);
+      ctx.lineTo(0, this.height);
+      ctx.lineTo(this.width, this.height);
+      ctx.lineTo(this.width, 0);
+      ctx.lineTo(0, 0);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(this.constructorRotateBox.center.x, this.constructorRotateBox.center.y, 25, 0, 2 * Math.PI);
+      ctx.stroke();
+      ctx.fillStyle = 'white';
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(this.constructorResizeBox.center.x, this.constructorResizeBox.center.y, 25, 0, 2 * Math.PI);
+      ctx.stroke();
+      ctx.fillStyle = 'red';
+      ctx.fill();
+    }
     return constructionCanv;
   }
 
@@ -237,6 +239,20 @@ class DraggableImage {
     console.log(this.corners)
   }
 
+  select() {
+    this.selected = true;
+    this.setBoxes();
+    this.generate();
+  }
+
+  deselect() {
+    console.log('deselect')
+    this.selected = false;
+    this.setBoxes();
+    this.generate();
+  }
+
+
   location() {
     console.log(this)
   };
@@ -260,8 +276,8 @@ class DraggableImage {
   };
 
   canResize(x, y) {
-    if ( (this.width >= 500 && x > 0 ) 
-      || (this.height >= 500 && y > 0 ) 
+    if ( (this.width >= 700 && x > 0 ) 
+      || (this.height >= 700 && y > 0 ) 
       || (this.width <= 100 && x < 0 ) 
       || (this.height <= 100 && y < 0 ) 
     ) return false;

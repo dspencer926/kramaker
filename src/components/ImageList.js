@@ -13,13 +13,8 @@ class ImageList extends Component {
   }
 
   componentDidMount() {
-    console.log(images.kramerTeethImg)
-    this.teeth = images.kramerTeethImg;
-    this.teeth.height = 200;
-    this.teeth.width = 200;
-    let image = [this.teeth]
     this.setState({
-      images: image,
+      images: images,
     })
   }
 
@@ -31,9 +26,10 @@ class ImageList extends Component {
   render() {
     return (
       <div id='image-list'>
-        {this.state.images.map(val => {
+        {this.state.images.map((val, i) => {
           return (
             <img 
+              key={i} 
               src={val.src} 
               height={val.height}
               width={val.width}
