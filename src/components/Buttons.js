@@ -19,7 +19,7 @@ class Buttons extends Component {
     return (
       <div id='buttons'>
         <input id='upload' type='file' accept='image'/>
-        <button onClick={this.loadPic}>Okay</button>
+        <button onClick={this.loadPic}>Go!</button>
       </div>
     );
   }

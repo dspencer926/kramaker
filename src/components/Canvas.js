@@ -18,21 +18,38 @@ class Canvas extends Component {
     this.handleMouseUp = this.handleMouseUp.bind(this);
     this.handleMouseMove = this.handleMouseMove.bind(this);
     this.drawImage = this.drawImage.bind(this);
+    this.calculateDimensions = this.calculateDimensions.bind(this);
     let original; 
     let canv;
   }
+
   
   drawImage() {
+    console.log('hello')
     this.canv = document.getElementById('canvas');
-    console.log(this.canv);
-    let ctx = this.canv.getContext('2d');
+    this.calculateDimensions();
     this.original = this.props.image;
-    ctx.drawImage(this.original, 0, 0);
+    this.canv.width = this.original.width;
+    this.canv.height = this.original.height;
+    let ctx = this.canv.getContext('2d');
+    console.log(this.original.width, this.original.height)
+    ctx.drawImage(this.original, 0, 0, this.original.width, this.original.height);
+
+  }
+
+  calculateDimensions() {
+    let width = this.props.image.width;
+    if (width > 1400) {
+      let height = this.props.image.height;
+      let ratio = width / height;
+      this.props.image.width = 1400;
+      this.props.image.height = this.props.image.width / ratio;
+    }
   }
 
   refresh() {
     let ctx = this.canv.getContext('2d');
-    ctx.drawImage(this.original, 0, 0);
+    ctx.drawImage(this.original, 0, 0, this.original.width, this.original.height);
     let canv = this.props.draggableImage.generate();
     ctx.drawImage(canv, 0, 0);
   }
@@ -161,8 +178,6 @@ class Canvas extends Component {
       display = 
       <canvas 
         id='canvas' 
-        height={this.props.image.height} 
-        width={this.props.image.width}
         onMouseDown={(e) => this.handleMouseDown(e)}
         onMouseUp={this.handleMouseUp}
         onMouseMove={(e) => this.handleMouseMove(e)}
