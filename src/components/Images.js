@@ -1,4 +1,4 @@
-import kramerTeeth from '../kramerPics/kramerTeeth.png';
+const kramerTeeth = require('../kramerPics/kramerTeeth.png');
 // import rotateImage from '../loop.png';
 
 const kramerTeethImg = new Image();
