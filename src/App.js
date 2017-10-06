@@ -20,7 +20,6 @@ class App extends Component {
     this.addPic = this.addPic.bind(this);
     this.downloadLink = this.downloadLink.bind(this);
     this.downloadX = this.downloadX.bind(this);
-    this.calculateDimensions = this.calculateDimensions.bind(this);
   }
 
   getImage(image) {
@@ -30,27 +29,12 @@ class App extends Component {
   }
   
   setImage(e) {
-    let newImg = e.target.result;
-    let dimensions = this.calculateDimensions(newImg);
-    let img = new Image(dimensions.width, dimensions.height);
-    img.src = newImg;
+    let img = new Image();
+    img.src = e.target.result;
     img.onload = () => {
       this.setState({
         image: img,
       }, this.canvas.drawImage)
-    }
-  }
-  calculateDimensions(img) {
-    let width = img.width;
-    let height = img.height;
-    if (width > 1400) {
-      let ratio = width / height;
-      width = 1400;
-      height = width / ratio;
-    }
-    return {
-      width, 
-      height
     }
   }
 
@@ -61,7 +45,6 @@ class App extends Component {
       draggableImage: newImg,
     }, this.canvas.refresh)
   }
-
 
   downloadLink() {
     this.state.draggableImage.deselect();
