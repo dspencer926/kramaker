@@ -1,11 +1,12 @@
 {
   "main.css": "static/css/main.1f90f0d0.css",
   "main.css.map": "static/css/main.1f90f0d0.css.map",
-  "main.js": "static/js/main.1403a663.js",
-  "main.js.map": "static/js/main.1403a663.js.map",
+  "main.js": "static/js/main.bb476d67.js",
+  "main.js.map": "static/js/main.bb476d67.js.map",
   "static/media/kramerEars.png": "static/media/kramerEars.65d08206.png",
   "static/media/kramerHair.png": "static/media/kramerHair.d504fd5d.png",
+  "static/media/kramerRound.png": "static/media/kramerRound.aaece045.png",
   "static/media/kramerTeeth.png": "static/media/kramerTeeth.51dbd905.png",
-  "static/media/kramerTongue.png": "static/media/kramerTongue.48d77081.png",
+  "static/media/kramerTongue.png": "static/media/kramerTongue.a2fd2c40.png",
   "static/media/kramerTongue2.png": "static/media/kramerTongue2.a9be1f4d.png"
 }
